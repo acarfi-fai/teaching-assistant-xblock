@@ -1,0 +1,2 @@
+[xblock.v1]
+agent_test = agent_test:AgentTestXBlock

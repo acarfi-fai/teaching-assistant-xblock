@@ -1,0 +1,9 @@
+Metadata-Version: 2.4
+Name: agent_test-xblock
+Version: 0.1
+Summary: agent_test XBlock
+License: UNKNOWN
+Requires-Dist: XBlock
+Dynamic: license
+Dynamic: requires-dist
+Dynamic: summary

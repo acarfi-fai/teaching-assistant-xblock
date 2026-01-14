@@ -1,0 +1,76 @@
+<div class="agt-root" role="region" aria-label="Video assistant">
+  <div class="agt-shell">
+    <div class="agt-topbar">
+      <div class="agt-brand">
+        <div class="agt-brand-title">Video Assistant</div>
+        <div id="agtVideoMeta" class="agt-brand-subtitle"></div>
+      </div>
+
+      <div class="agt-topbar-actions">
+        <button data-agt-fs class="agt-btn agt-btn-ghost" type="button" title="Fullscreen (video + chat)">
+          <span class="agt-btn-icon" aria-hidden="true">⛶</span>
+          <span class="agt-btn-label">Fullscreen</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="agt-grid">
+      <!-- LEFT: Video -->
+      <section class="agt-card agt-video-card" aria-label="Video">
+        <div class="agt-video-stage">
+          <div class="agt-video-aspect">
+            <div id="ytPlayer" class="agt-yt"></div>
+          </div>
+        </div>
+
+        <div class="agt-video-footer">
+          <div id="agtStatus" class="agt-status">Ready.</div>
+          <div class="agt-hint">Tip: Ctrl+Enter sends the message</div>
+        </div>
+      </section>
+
+      <!-- RIGHT: Chat -->
+      <section class="agt-card agt-chat-card" aria-label="Chat">
+        <div class="agt-card-header">
+          <div class="agt-card-header-row">
+            <div class="agt-title">Chat</div>
+            <button data-agt-fs class="agt-btn agt-btn-ghost agt-btn-sm" type="button" title="Fullscreen (video + chat)">
+              <span class="agt-btn-icon" aria-hidden="true">⛶</span>
+              <span class="agt-btn-label">Fullscreen</span>
+            </button>
+          </div>
+          <div class="agt-subtitle">Ask a question about what you’re watching.</div>
+        </div>
+
+        <!-- This wrapper becomes the flex column that fills card height -->
+        <div class="agt-chat-flex">
+          <!-- Scroll area (ONLY this scrolls) -->
+          <div class="agt-chat-scroll">
+            <div id="messages" class="agt-messages" aria-live="polite" aria-relevant="additions text"></div>
+          </div>
+
+          <!-- Composer pinned at bottom -->
+          <div class="agt-composer">
+            <label class="agt-sr-only" for="input">Message</label>
+
+            <textarea
+              id="input"
+              class="agt-input"
+              placeholder="Ask something… (Ctrl+Enter to send)"
+              rows="2"
+            ></textarea>
+
+            <div class="agt-composer-row">
+              <div id="err" class="agt-error" role="alert"></div>
+
+              <button id="sendBtn" type="button" class="agt-btn agt-btn-primary">
+                <span class="agt-btn-label">Send</span>
+                <span id="agtSendSpinner" class="agt-spinner" aria-hidden="true"></span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
