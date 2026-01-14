@@ -1,0 +1,439 @@
+:root{
+  --bg: #0b1020;
+  --panel: #0f1630;
+  --panel2: #0c132b;
+  --border: rgba(255,255,255,0.10);
+  --text: rgba(255,255,255,0.92);
+  --muted: rgba(255,255,255,0.68);
+  --muted2: rgba(255,255,255,0.52);
+  --accent: #6aa6ff;
+  --accentStrong: #2b7bff;
+  --danger: #ff6b6b;
+  --shadow: 0 14px 40px rgba(0,0,0,0.45);
+  --radius: 18px;
+  --radius2: 14px;
+  --font: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+/* Make sizing consistent */
+*{ box-sizing: border-box; }
+
+.agt-root{
+  font-family: var(--font);
+  color: var(--text);
+}
+
+/* Shell */
+.agt-shell{
+  padding: 14px;
+  background: radial-gradient(1200px 600px at 20% 0%, rgba(106,166,255,0.16), rgba(0,0,0,0) 55%);
+  border-radius: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Top bar */
+.agt-topbar{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.agt-brand{
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.agt-brand-title{
+  font-weight: 780;
+  font-size: 14px;
+  color: var(--text);
+}
+
+.agt-brand-subtitle{
+  font-size: 12px;
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: min(70vw, 900px);
+}
+
+.agt-topbar-actions{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Layout */
+.agt-grid{
+  display: grid;
+  grid-template-columns: 2.2fr 1fr;
+  gap: 14px;
+
+  /* IMPORTANT: stretch makes both cards same height */
+  align-items: stretch;
+
+  height: clamp(520px, 70vh, 820px);
+  min-height: 0;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+@media (max-width: 980px){
+  .agt-grid{
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+}
+
+/* Card */
+.agt-card{
+  background: linear-gradient(180deg, var(--panel), var(--panel2));
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  min-width: 0;
+
+  /* IMPORTANT: allow internal flex children to scroll properly */
+  min-height: 0;
+}
+
+/* VIDEO CARD */
+.agt-video-card{
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+  min-height: 0;
+}
+
+.agt-video-stage{
+  /* takes all available height except footer */
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+}
+
+.agt-video-aspect{
+  width: 100%;
+  /* Let it grow, but keep 16:9. In tall layouts it will pillarbox */
+  aspect-ratio: 16 / 9;
+  background: #000;
+  border-radius: var(--radius2);
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.10);
+
+  /* Center within available height if extra space */
+  margin: auto 0;
+}
+
+.agt-yt{
+  width: 100%;
+  height: 100%;
+}
+
+/* Video footer */
+.agt-video-footer{
+  margin-top: 10px;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.agt-status{
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.agt-hint{
+  font-size: 12px;
+  color: var(--muted2);
+}
+
+/* CHAT CARD */
+.agt-chat-card{
+  display: flex;
+  flex-direction: column;
+  min-height: 0; /* critical for scroll */
+}
+
+.agt-card-header{
+  padding: 12px 14px;
+  border-bottom: 1px solid rgba(255,255,255,0.10);
+  background: rgba(255,255,255,0.03);
+}
+
+.agt-card-header-row{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.agt-title{
+  font-size: 14px;
+  font-weight: 780;
+  color: var(--text);
+}
+
+.agt-subtitle{
+  margin-top: 2px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* This fills the remaining height below header */
+.agt-chat-flex{
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+/* Scroll area: must have flex + min-height:0 */
+.agt-chat-scroll{
+  flex: 1 1 auto;
+  min-height: 0;
+  background: rgba(0,0,0,0.10);
+  padding: 10px;
+  overflow: hidden;
+}
+
+/* The element that actually scrolls */
+.agt-messages{
+  height: 100%;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-right: 4px;
+}
+
+/* Scrollbar styling */
+.agt-messages::-webkit-scrollbar{ width: 10px; }
+.agt-messages::-webkit-scrollbar-track{
+  background: rgba(255,255,255,0.04);
+  border-radius: 999px;
+}
+.agt-messages::-webkit-scrollbar-thumb{
+  background: rgba(255,255,255,0.18);
+  border-radius: 999px;
+}
+.agt-messages::-webkit-scrollbar-thumb:hover{
+  background: rgba(255,255,255,0.26);
+}
+
+/* Message group + bubbles */
+.agt-msg-group{
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.agt-msg{
+  max-width: 92%;
+  border-radius: 14px;
+  padding: 10px 12px;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(255,255,255,0.06);
+  color: var(--text);
+  line-height: 1.35;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.agt-msg-user{
+  align-self: flex-end;
+  background: rgba(106,166,255,0.18);
+  border-color: rgba(106,166,255,0.32);
+}
+
+.agt-msg-assistant{
+  align-self: flex-start;
+  background: rgba(255,255,255,0.06);
+}
+
+.agt-msg-meta{
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  font-size: 11px;
+  color: var(--muted2);
+}
+
+.agt-chip{
+  display: inline-flex;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+/* Composer pinned */
+.agt-composer{
+  flex: 0 0 auto;
+  padding: 12px;
+  border-top: 1px solid rgba(255,255,255,0.10);
+  background: rgba(255,255,255,0.03);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* textarea cut fix: padding + line-height + min-height */
+.agt-input{
+  width: 100%;
+  resize: vertical;
+  min-height: 48px;
+  max-height: 180px;
+  padding: 12px 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.16);
+  background: rgba(0,0,0,0.30);
+  color: var(--text);
+  outline: none;
+  font-family: var(--font);
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.agt-input:focus{
+  border-color: rgba(106,166,255,0.70);
+  box-shadow: 0 0 0 3px rgba(106,166,255,0.16);
+}
+
+.agt-composer-row{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.agt-error{
+  color: var(--danger);
+  font-size: 12px;
+  min-height: 16px;
+  flex: 1 1 auto;
+}
+
+/* Buttons */
+.agt-btn{
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  padding: 10px 14px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.06);
+  color: var(--text);
+  cursor: pointer;
+  font-weight: 740;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.agt-btn:hover{
+  background: rgba(255,255,255,0.10);
+}
+
+.agt-btn:disabled{
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.agt-btn-primary{
+  border-color: rgba(106,166,255,0.55);
+  background: rgba(43,123,255,0.25);
+}
+
+.agt-btn-primary:hover{
+  background: rgba(43,123,255,0.34);
+  border-color: rgba(106,166,255,0.72);
+}
+
+.agt-btn-ghost{
+  background: rgba(255,255,255,0.04);
+}
+
+.agt-btn-icon{
+  font-size: 14px;
+  line-height: 1;
+}
+
+.agt-btn-sm{
+  padding: 6px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* Spinner */
+.agt-spinner{
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.35);
+  border-top-color: rgba(255,255,255,0.95);
+  display: none;
+  animation: agtSpin 0.8s linear infinite;
+}
+
+.agt-btn.is-loading .agt-spinner{
+  display: inline-block;
+}
+
+@keyframes agtSpin{
+  from{ transform: rotate(0deg); }
+  to{ transform: rotate(360deg); }
+}
+
+/* Fullscreen mode */
+.agt-root.agt-fullscreen{
+  background: var(--bg);
+  width: 100%;
+  height: 100%;
+}
+
+.agt-root.agt-fullscreen .agt-shell{
+  padding: 16px;
+  border-radius: 0;
+  height: 100vh;
+  width: 100vw;
+}
+
+.agt-root.agt-fullscreen .agt-grid{
+  max-width: none;
+  width: 100%;
+  margin: 0;
+  height: 100%;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+/* Prefer fullscreen pseudo-class sizing when available */
+.agt-root:fullscreen{
+  width: 100vw;
+  height: 100vh;
+}
+
+/* Accessibility helper */
+.agt-sr-only{
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
+}
